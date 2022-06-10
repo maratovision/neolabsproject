@@ -9,12 +9,30 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Property
+    
     var numberFromScreen: Double = 0;
     var firstNumFromScreen: Double = 0;
     var operation: Int = 0;
     var mathSign: Bool = false
-
+    
+    // MARK: - Outlets
+    
+    
+    @IBOutlet var digitsButton: [UIButton]!
     @IBOutlet weak var result: UILabel!
+    
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        digitsButton.forEach { button in
+            button.layer.cornerRadius = 15
+            button.layer.masksToBounds = true
+        }
+    }
+    
+    // MARK: - Actions
     
     @IBAction func digits(_ sender: UIButton) {
         if mathSign == true {
@@ -45,7 +63,7 @@ class ViewController: UIViewController {
             else if sender.tag == 14{
                 result.text = "+"
             }
-            
+
             operation = sender.tag
             mathSign = true;
         }
@@ -70,11 +88,5 @@ class ViewController: UIViewController {
             operation = 0
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-
 }
 
